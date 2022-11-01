@@ -32,4 +32,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('/edit/{id}', [PostController::class, 'edit']);
     Route::get('/post/{id}',[PostController::class, 'read']);
     Route::get('/role', [RoleController::class, 'index']);
+    Route::get('/delete_user/{id}',[RoleController::class,'delete_user']);
+    Route::get('/edit_user/{id}',[RoleController::class,'edit_user']);
+    Route::post('/edit_user/{id}',[RoleController::class,'edit_user']);
 });

@@ -48,7 +48,7 @@
                                 </td>
                                 <td>
                                     @can('update-role', $user->roles->first())
-                                        <a href="{{ url('admin/update_role' . $user->id) }}"
+                                        <a href="{{ url('admin/edit_user/' . $user->id) }}"
                                            class="btn btn-primary btn-sm">
                                             <svg class="svg-inline--fa fa-pen-to-square" aria-hidden="true"
                                                  focusable="false" data-prefix="fas" data-icon="pen-to-square"
@@ -61,7 +61,7 @@
                                         </a>
                                     @endcan
                                     @can('delete-user', $user->roles->first())
-                                        <a href="{{ url('admin/delete_role/' . $user->id) }}"
+                                        <a href="{{ url('admin/delete_user/' . $user->id) }}"
                                            class="btn btn-danger btn-sm del-post-list" data-id="">
                                             <svg class="svg-inline--fa fa-trash" aria-hidden="true"
                                                  focusable="false" data-prefix="fas" data-icon="trash" role="img"
