@@ -49,7 +49,7 @@
                 </li>
                 @if(Auth::check())
                     <li class="menu-li">
-                        <a>
+                        <a href="{{ route('home') }}">
                         {{ Auth::user()->name }}
                         </a>
                     </li>

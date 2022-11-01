@@ -189,7 +189,7 @@
                         <li class="clearfix">
                             <div class="another-left">
                                 <a  class="another">
-                                    <img src="http://alllaravel.test/img/{{ $post->url_img }}.webp">
+                                    <img src="http://alllaravel.test/img/{{ $post->url_img ?? 'anh7'}}.webp">
                                 </a>
                             </div>
                             <div class="another-right">
