@@ -89,14 +89,14 @@
             </form>
             <!-- Navigation -->
             <ul class="navbar-nav">
-                <li class="nav-item  active ">
-                    <a class="nav-link  active " href="dashboard.blade.php">
-                        <i class="ni ni-tv-2 text-primary"></i> Categories
+                <li class="nav-item">
+                    <a class="nav-link" href={{ url('home') }}>
+                        <i class="ni ni-tv-2 text-primary"></i> Posts
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="{{ asset('admin/examples/icons.html') }}">
-                        <i class="ni ni-planet text-blue"></i> Posts
+                        <i class="ni ni-planet text-blue"></i> Categories
                     </a>
                 </li>
                 <li class="nav-item">
@@ -105,8 +105,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="{{ asset('admin/examples/profile.html') }}">
-                        <i class="ni ni-single-02 text-yellow"></i> User profile
+                    <a class="nav-link " href="{{ url('admin/role') }}">
+                        <i class="ni ni-single-02 text-yellow"></i> User Management
                     </a>
                 </li>
                 <li class="nav-item">

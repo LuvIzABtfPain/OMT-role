@@ -33,7 +33,7 @@ class HomeController extends Controller
             $res = Post::with('user','category')->get();
             return view('admin.dashboard', ['posts' => $res]);
         } else {
-           return redirect('view');
+            return redirect('view');
         }
     }
 

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\RoleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,4 +31,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/delete/{id}', [PostController::class, 'delete']);
     Route::post('/edit/{id}', [PostController::class, 'edit']);
     Route::get('/post/{id}',[PostController::class, 'read']);
+    Route::get('/role', [RoleController::class, 'index']);
 });
