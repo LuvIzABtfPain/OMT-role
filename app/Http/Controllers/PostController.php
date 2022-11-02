@@ -25,6 +25,7 @@ class PostController extends Controller
     }
     public function add_post(Request $request)
     {
+        $this->authorize('create', Post::class);
         if($request->isMethod('post')) {
             $post = new Post;
             $post->title = $request->title;

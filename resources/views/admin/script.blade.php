@@ -13,4 +13,25 @@
         application: "argon-dashboard-free"
     });
 </script>
-
+<script>
+    jQuery(document).ready(function($) {
+        $(".post").on("click",function(){
+            $name = $('#cate_name').val();
+            $id = $(this).attr("data-id");
+            $.ajax({
+                url: "http://alllaravel.test/admin/edit_cate",
+                type: "GET",
+                data: {
+                    name: $name,
+                    id: $id,
+                },
+                success: function (result) {
+                    location.reload();
+                },
+                error: function(){
+                    alert('edit that bai');
+                }
+            });
+        });
+    });
+</script>

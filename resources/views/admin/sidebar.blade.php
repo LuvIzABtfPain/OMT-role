@@ -95,7 +95,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="{{ asset('admin/examples/icons.html') }}">
+                    <a class="nav-link " href="{{ url('admin/category') }}">
                         <i class="ni ni-planet text-blue"></i> Categories
                     </a>
                 </li>
@@ -109,21 +109,7 @@
                         <i class="ni ni-single-02 text-yellow"></i> User Management
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="{{ asset('admin/examples/tables.html') }}">
-                        <i class="ni ni-bullet-list-67 text-red"></i> Tables
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ asset('admin/examples/login.html') }}">
-                        <i class="ni ni-key-25 text-info"></i> Login
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ asset('admin/examples/register.html') }}">
-                        <i class="ni ni-circle-08 text-pink"></i> Register
-                    </a>
-                </li>
+
             </ul>
             <!-- Divider -->
             <hr class="my-3">

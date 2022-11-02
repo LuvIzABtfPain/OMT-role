@@ -35,4 +35,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/delete_user/{id}',[RoleController::class,'delete_user']);
     Route::get('/edit_user/{id}',[RoleController::class,'edit_user']);
     Route::post('/edit_user/{id}',[RoleController::class,'edit_user']);
+    Route::get('/category', [CategoryController::class,'index']);
+    Route::get('/edit_cate', [CategoryController::class,'edit']);
+    Route::get('/delete_cate/{id}', [CategoryController::class, 'delete']);
+    Route::post('/category', [CategoryController::class,'create'])->name('add.cate');
 });
