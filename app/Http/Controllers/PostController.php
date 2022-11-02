@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 class PostController extends Controller
 {
         public function __construct()
@@ -35,9 +36,10 @@ class PostController extends Controller
             $post->author_id = Auth::user()->id;
             $flag = $post->save();
             if ($flag == true) {
+                alert()->success('Post Created', 'Successfully');
                 return redirect()->route('home');
             } else {
-                echo 'that bai';
+                alert()->error("Post didn't create", 'Something went wrong!');
             }
         }
         if($request->method('get')){
@@ -59,12 +61,13 @@ class PostController extends Controller
         if(Auth::user()->can('delete', $item)) {
             $flag = $item->delete();
             if ($flag == true) {
+                alert()->success('Post Deleted', 'Successfully');
                 return redirect('home');
             } else {
-                echo 'xoa that bai';
+                alert()->error("Post didn't delete", 'Something went wrong!');
             }
         }
-        else abort('403');
+        else  alert()->error("Bạn không được xóa bài viết này", 'Something went wrong!');
     }
     public function edit(Request $request, $id){
         $item = Post::find($id);
@@ -81,14 +84,17 @@ class PostController extends Controller
                 $item->cate_id = $request->category;
                 $flag = $item->save();
                 if($flag == true) {
+                    alert()->success('Post Edited', 'Successfully');
                     return redirect('/home');
                 } else {
-                    echo 'update that bai';
+                    alert()->error("Post didn't edit", 'Something went wrong!');
                 }
             }
         }
-        else abort('403');
-
+        else {
+            alert()->error("Bạn không được chỉnh sửa bài viết này", 'Something went wrong!');
+            return redirect('/home');
+        }
     }
 
 }

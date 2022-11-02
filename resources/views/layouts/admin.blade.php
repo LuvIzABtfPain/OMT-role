@@ -9,6 +9,8 @@
 </div>
 @yield('comments')
 @include('admin.footer')
+@include('sweetalert::alert')
 </body>
 @include('admin.script')
 </html>
+

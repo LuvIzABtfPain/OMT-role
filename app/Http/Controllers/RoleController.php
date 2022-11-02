@@ -7,6 +7,7 @@ use App\Models\User;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RoleController extends Controller
 {
@@ -27,10 +28,16 @@ class RoleController extends Controller
     }
     public function delete_user($id){
         $victim = User::findOrFail($id);
-        if(Auth::user()->can('delete', $victim->roles->first())){
-            $victim->delete();
-            return redirect('/admin/role');
+        if(Auth::user()->can('delete', $victim->roles->first())) {
+            $flag = $victim->delete();
+            if ($flag) {
+                alert()->success('User Deleted', 'Successfully');
+            } else {
+                alert()->error("User didn't delete", 'Something went wrong!');
+            }
         }
+        else alert()->error("Không thể xóa", 'Bạn không có quyền này!');
+        return redirect('/admin/role');
     }
     public function edit_user(Request $request, $id){
         $victim = User::findOrFail($id);
@@ -42,7 +49,10 @@ class RoleController extends Controller
             $victim->name = $request->name;
             $victim->email = $request->email;
             DB::table('user_role')->where('user_id', $id)->update(['role_id' => $request->role]);
-            $victim->save();
+            $flag = $victim->save();
+            if($flag){
+                alert()->success('User edited', 'Successfully');
+            } else alert()->error("User wasn't edited", 'Something went wrong!');
             return redirect('/admin/role');
         }
     }

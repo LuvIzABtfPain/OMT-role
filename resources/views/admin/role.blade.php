@@ -47,7 +47,6 @@
                                     {{ $user->roles->first()->name }}
                                 </td>
                                 <td>
-                                    @can('update-role', $user->roles->first())
                                         <a href="{{ url('admin/edit_user/' . $user->id) }}"
                                            class="btn btn-primary btn-sm">
                                             <svg class="svg-inline--fa fa-pen-to-square" aria-hidden="true"
@@ -59,8 +58,6 @@
                                             </svg>
                                             <!-- <span class="fa fa-edit"></span> Font Awesome fontawesome.com -->
                                         </a>
-                                    @endcan
-                                    @can('delete-user', $user->roles->first())
                                         <a href="{{ url('admin/delete_user/' . $user->id) }}"
                                            class="btn btn-danger btn-sm del-post-list" data-id="">
                                             <svg class="svg-inline--fa fa-trash" aria-hidden="true"
@@ -72,7 +69,6 @@
                                             </svg>
                                             <!-- <span class="fa fa-trash"></span> Font Awesome fontawesome.com -->
                                         </a>
-                                    @endcan
                                 </td>
                             </tr>
                         @endforeach

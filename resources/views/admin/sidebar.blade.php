@@ -100,7 +100,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="{{ asset('admin/examples/maps.html') }}">
+                    <a class="nav-link " href=#>
                         <i class="ni ni-pin-3 text-orange"></i> Images
                     </a>
                 </li>
