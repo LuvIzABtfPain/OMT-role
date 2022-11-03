@@ -1,4 +1,4 @@
-
+{{--$body_add_post = CKEDITOR.instances['body_add_post'].getData();--}}
 
 <head>
     <meta charset="utf-8" />
@@ -17,4 +17,6 @@
     <link href="{{ asset('admin/assets') }}/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
     <link href="{{ asset('fontawesome') }}/css/all.css" rel="stylesheet" />
     <script src="{{ asset('fontawesome') }}/js/all.js"></script>
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </head>

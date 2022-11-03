@@ -62,12 +62,12 @@ class PostController extends Controller
             $flag = $item->delete();
             if ($flag == true) {
                 alert()->success('Post Deleted', 'Successfully');
-                return redirect('home');
             } else {
                 alert()->error("Post didn't delete", 'Something went wrong!');
             }
         }
         else  alert()->error("Bạn không được xóa bài viết này", 'Something went wrong!');
+        return redirect('home');
     }
     public function edit(Request $request, $id){
         $item = Post::find($id);

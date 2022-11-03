@@ -86,7 +86,7 @@
                                                 <!-- <span class="fa fa-edit"></span> Font Awesome fontawesome.com -->
                                             </a>
                                             <a href="{{ url('admin/delete/' . $item->id) }}"
-                                               class="btn btn-danger btn-sm del-post-list" data-id="">
+                                               class="btn btn-danger btn-sm del-post-list" data-name="{{ $item->title }}">
                                                 <svg class="svg-inline--fa fa-trash" aria-hidden="true"
                                                      focusable="false" data-prefix="fas" data-icon="trash" role="img"
                                                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
@@ -108,3 +108,4 @@
 
             <!--   Core   -->
 @endsection
+

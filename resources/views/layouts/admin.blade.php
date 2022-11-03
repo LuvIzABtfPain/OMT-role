@@ -12,5 +12,6 @@
 @include('sweetalert::alert')
 </body>
 @include('admin.script')
+@yield('after_scripts')
 </html>
 

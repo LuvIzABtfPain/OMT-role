@@ -53,7 +53,7 @@
                         </div>
                         <div class="form-group">
                             <label for="body">Body</label>
-                            <textarea class="form-control" id="body" name="body" rows="3"></textarea>
+                            <textarea class="form-control ckeditor" id="body" name="body" rows="3"></textarea>
                         </div>
                         <button type="submit" class="btn btn-success">
                             Add post
@@ -65,3 +65,4 @@
 
             <!--   Core   -->
 @endsection
+

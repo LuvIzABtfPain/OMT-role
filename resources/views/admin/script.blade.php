@@ -15,6 +15,8 @@
 </script>
 <script>
     jQuery(document).ready(function($) {
+        CKEDITOR.replaceClass = 'ckeditor';
+
         $(".post").on("click",function(){
             $name = $('#cate_name').val();
             $id = $(this).attr("data-id");
@@ -29,9 +31,28 @@
                     location.reload();
                 },
                 error: function(){
-                    alert('edit that bai');
+                    swal("edit that bai");
                 }
             });
+        });
+        //delete
+        $('.btn-danger').on("click", function (e){
+            e.preventDefault();
+            $name = $(this).attr("data-name");
+            $url = $(this).attr("href");
+            Swal.fire({
+                title: 'Are you sure delete this?',
+                text: $name,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = $url;
+                }
+            })
         });
     });
 </script>

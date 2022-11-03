@@ -34,7 +34,7 @@
                         <img src="{{ asset('img') }}/{{ $item->url_img }}.webp" style="max-width: 100%;">
                         <h2>{{ $item->description }}</h2>
                         <h3>Chuyên mục: {{ $cate }}</h3>
-                        <p class="text-center">{{ $item->body }}</p>
+                        <p class="text-center">{!! html_entity_decode($item->body) !!}</p>
                         <small>Tác giả: {{ $author }}</small>
                     </div>
                     @endsection()
