@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Auth;
 use App\Models\Post;
 use App\Models\User;
+use Ramsey\Collection\Collection;
 
 class HomeController extends Controller
 {
@@ -41,13 +42,30 @@ class HomeController extends Controller
 
     public function view_post($id)
     {
-        $comments = Comment::with('user')->where('post_id', $id)->get();
+        $allcomments = Comment::with('user')->where('post_id', $id)->get();
+        $comments_can_edit = collect(new Comment());
+        $comments_cant_edit = collect(new Comment());
+        if(Auth::check()){
+            $user_id =  Auth::user()->id;
+            foreach($allcomments as $comment){
+                if($comment->user_id == $user_id){
+                    $comments_can_edit->add($comment);
+                }
+                else {
+                    $comments_cant_edit->add($comment);
+                }
+            }
+        } else {
+            $comments_cant_edit = null;
+            $comments_cant_edit = $allcomments;
+        }
         $post = Post::find($id);
         $author = User::find($post->author_id);
         $category = Category::find($post->cate_id);
 
         return view('post', [
-            'comments'=>$comments,
+            'comments_can_edit'=>$comments_can_edit,
+            'comments_cant_edit'=>$comments_cant_edit,
             'post'=>$post,
             'author'=>$author,
             'cate'=>$category

@@ -9,4 +9,5 @@
     <link rel="stylesheet" href="{{ asset('bootstrap-4.5.3/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('client/css/main.css') }}">
     <script src="{{ asset('client/js/main.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </head>

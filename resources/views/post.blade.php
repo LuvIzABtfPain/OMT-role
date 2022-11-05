@@ -21,7 +21,28 @@
             <button type="submit" class="btn-success" style="margin-top:8px; margin-bottom: 14px; border-radius: 4px;">Thêm bình luận</button>
             </form>
             <div class="comments">
-                @foreach($comments as $comment)
+                @if($comments_can_edit !=  null)
+                @foreach($comments_can_edit as $comment)
+                <div class="comment">
+                    <form action="{{ route('ud.comment', ['id'=>$comment['id']]) }}" method="POST">
+                        {!! csrf_field() !!}
+                        <p>{{ $comment->content }}</p>
+                        <small style="float:right;">
+                            {{ $comment->updated_at ?? $comment->created_at }}
+                        </small>
+                        <textarea name="content" style="width:100%;" hidden>{{ $comment->content }}</textarea>
+                        <div>
+                            <button type="button" class="btn btn-info bt1" value="update" onclick="calledit(this);">Chỉnh sửa</button>
+                            <button type="submit" class="btn btn-success bt2" hidden value="update" name="action">Lưu</button>
+                            <button type="button" class="btn btn-danger bt3" onclick="rollbackedit(this);"hidden>Hủy</button>
+                            <button type="button" class="btn btn-danger bt4" onclick="calldelete(this); return false;">Xóa</button>
+                            <button type="submit" class="btn btn-danger bt5" hidden value="delete" name="action"></button>
+                        </div>
+                    </form>
+                </div>
+                @endforeach
+                @endif
+                @foreach($comments_cant_edit as $comment)
 {{--                    @if(Auth::check() && ((Auth::user()->id == $comment->user_id)))--}}
 {{--                                <div>--}}
 {{--                                    <form action="{{ route('ud.comment', ['id'=>$comment['id']]) }}" method="POST">--}}
@@ -46,4 +67,35 @@
         </div>
     </div>
 @endsection
-
+@section('after_scripts')
+    <script>
+        function calledit(element) {
+            $dad = $(element).parents('.comment');
+            $(element).attr("hidden", true);
+            $dad.find('.bt2, .bt3, textarea').removeAttr('hidden');
+            $dad.find('.bt4, p').attr("hidden", true);
+            $dad.find('textarea').focus();
+        }
+        function rollbackedit(element) {
+            $dad = $(element).parents('.comment');
+            $(element).attr("hidden", true);
+            $dad.find('.bt1, .bt4, p').removeAttr('hidden');
+            $dad.find('.bt2, textarea').attr("hidden", true);
+        }
+        function calldelete(element){
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $(element).parents('.comment').find('.bt5').trigger("click");
+                }
+            })
+        }
+    </script>
+@endsection
