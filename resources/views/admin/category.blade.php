@@ -35,12 +35,10 @@
                                     <th scope="row">
                                         {{ $cate->id }}
                                     </th>
-                                    <td>
-                                        {{ $cate->name }}
-                                    </td>
-                                    <td>
-                                            <a href=# onclick="event.preventDefault();" data-id='{{ $cate->id }}'
-                                               class="btn btn-primary btn-sm post">
+                                    <td class="catename">{{ $cate->name }}</td>
+                                    <td class="cateicon">
+                                            <a href=# onclick="editCate(this); return false;" data-id='{{ $cate->id }}'
+                                               class="btn btn-primary btn-sm">
                                                 <svg class="svg-inline--fa fa-pen-to-square" aria-hidden="true"
                                                      focusable="false" data-prefix="fas" data-icon="pen-to-square"
                                                      role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
@@ -74,9 +72,76 @@
                         <div class="form-group">
                             <label class="float-left">Click change button on which row you want to change or click add button to add new category</label>
                             <input type="text" class="float-left" id="cate_name" name="name" style="margin-right: 8px; margin-left:8px;">
-                            <button class="btn-success float-right" style="border-radius: 4px;">Add</button>
+                            <button type="submit" id="btn_add" class="btn-success float-right" style="border-radius: 4px;">Add</button>
+                            <button type="button" id="btn_cancel" class="btn-danger float-right" onclick="cancelEdit();return false;" style="display:none; border-radius: 4px;">Cancel</button>
+                            <button type="button" id="btn_change" class="btn-info float-right" style="display:none; border-radius: 4px; margin-right:8px;">Change</button>
                         </div>
                     </form>
                 </div>
             </div>
+@endsection
+@section('after_scripts')
+    <script>
+                function editCate(element){
+                $name = $(element).parents('td.cateicon').siblings('td.catename').html();
+                $data_id = $(element).attr('data-id');
+                $('#btn_add').hide();
+                $('#btn_change, #btn_cancel').show();
+                $('#cate_name').val($name);
+                $('#btn_change').attr('data-id', $data_id);
+                $('#btn_change').attr('data-name', $name);
+                }
+                function cancelEdit(){
+                    $('#btn_change, #btn_cancel').hide();
+                    $('#btn_add').show();
+                    $('#cate_name').val(null);
+                }
+
+                //delete
+                $('a.btn-danger').on("click", function (e){
+                    e.preventDefault();
+                    $name = $(this).attr("data-name");
+                    $url = $(this).attr("href");
+                    Swal.fire({
+                        title: 'Are you sure delete this?',
+                        text: $name,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = $url;
+                        }
+                    })
+                });
+
+                $("#btn_change").on("click",function(){
+                    $name = $('#cate_name').val();
+                    $id = $(this).attr("data-id");
+                    if($name == ''){
+                        Swal.fire('Không được để trống');
+                    }
+                    else if($name == $(this).attr("data-name")){
+                        Swal.fire('Chưa có thay đổi nào');
+                    }
+                    else {
+                    $.ajax({
+                        url: "http://alllaravel.test/admin/edit_cate",
+                        type: "GET",
+                        data: {
+                            name: $name,
+                            id: $id,
+                        },
+                        success: function (result) {
+                            location.reload();
+                        },
+                        error: function(){
+                            swal("edit that bai");
+                        }
+                    });
+                    }
+                });
+    </script>
 @endsection
