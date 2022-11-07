@@ -78,4 +78,27 @@
             </div>
         </div>
 @endsection
+        @section('after_scripts')
+            <script>
+                //delete
+                $('.btn-danger').on("click", function (e){
+                    e.preventDefault();
+                    $name = $(this).attr("data-name");
+                    $url = $(this).attr("href");
+                    Swal.fire({
+                        title: 'Are you sure delete this?',
+                        text: $name,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = $url;
+                        }
+                    })
+                });
+            </script>
+@endsection
 

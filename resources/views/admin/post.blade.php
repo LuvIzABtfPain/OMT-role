@@ -31,7 +31,7 @@
                 <div class="card shadow">
                     <div style="margin:25px;">
                         <h1>{{ $item->title }}</h1>
-                        <img src="{{ asset('img') }}/{{ $item->url_img }}.webp" style="max-width: 100%;">
+                        <img src="{{ asset('storage/'.$item->url_img) }}" style="max-width: 100%;">
                         <h2>{{ $item->description }}</h2>
                         <h3>Chuyên mục: {{ $cate }}</h3>
                         <p class="text-center">{!! html_entity_decode($item->body) !!}</p>
