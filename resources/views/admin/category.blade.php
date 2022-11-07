@@ -78,6 +78,9 @@
                         </div>
                     </form>
                 </div>
+                @foreach($errors->all() as $error)
+                    <div style="color:red;">{{$error}}</div>
+                @endforeach
             </div>
 @endsection
 @section('after_scripts')

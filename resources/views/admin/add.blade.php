@@ -31,7 +31,7 @@
         <div class="row mt-5">
             <div class="col-xl-12 mb-5 mb-xl-0">
                 <div class="card shadow">
-                    <form role="form" action="{{url('admin/add_post')}}" method="POST" style="margin:25px;">
+                    <form role="form" action="{{url('admin/add_post')}}" method="POST" style="margin:25px;" enctype="multipart/form-data">
                         {!! csrf_field() !!}
                         <div class="form-group">
                             <label for="title">Title</label>
@@ -52,9 +52,16 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label for="photo">Attach a photograph</label>
+                            <input type="file" name="photo" id="photo" accept="image/*" class="form-control-file" required>
+                        </div>
+                        <div class="form-group">
                             <label for="body">Body</label>
                             <textarea class="form-control ckeditor" id="body" name="body" rows="3"></textarea>
                         </div>
+                        @foreach($errors->all() as $error)
+                            <div style="color:red;">{{$error}}</div>
+                        @endforeach
                         <button type="submit" class="btn btn-success">
                             Add post
                         </button>

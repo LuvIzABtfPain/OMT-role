@@ -16,25 +16,5 @@
 <script>
     jQuery(document).ready(function($) {
         CKEDITOR.replaceClass = 'ckeditor';
-
-        // $(".post").on("click",function(){
-        //     $name = $('#cate_name').val();
-        //     $id = $(this).attr("data-id");
-        //     $.ajax({
-        //         url: "http://alllaravel.test/admin/edit_cate",
-        //         type: "GET",
-        //         data: {
-        //             name: $name,
-        //             id: $id,
-        //         },
-        //         success: function (result) {
-        //             location.reload();
-        //         },
-        //         error: function(){
-        //             swal("edit that bai");
-        //         }
-        //     });
-        // });
-
     });
 </script>

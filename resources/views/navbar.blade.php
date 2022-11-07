@@ -23,30 +23,24 @@
                 </a>
             </h1>
             <ul class="menu-list">
+                @if(isset($category))
+                @foreach($category as $cate)
                 <li class="menu-li">
-                    <a>Mobile</a>
+                    <a href="{{ route('view.cate', ['id' => $cate->id]) }}">{{ $cate->name }}</a>
                 </li>
-                <li class="menu-li">
-                    <a>Tin ICT</a></li>
-                <li class="menu-li">
-                    <a>internet</a>
-                </li>
-                <li class="menu-li">
-                    <a>xem</a>
-                </li>
-                <li class="menu-li">
-                    <a>Khám phá</a>
-                </li>
-                <li class="menu-li">
-                    <a>Xem - mua - luôn</a>
-                </li>
-                <li class="menu-li expand-icon" id="expandicon">
-                    <div class="container" onclick="myFunction(this)">
-                        <div class="bar1"></div>
-                        <div class="bar2"></div>
-                        <div class="bar3"></div>
-                    </div>
-                </li>
+                @endforeach
+                    <li class="menu-li expand-icon" id="expandicon">
+                        <div class="container" onclick="myFunction(this)">
+                            <div class="bar1"></div>
+                            <div class="bar2"></div>
+                            <div class="bar3"></div>
+                        </div>
+                    </li>
+                @else
+                    <li class="menu-li">
+                        <a href="{{ route('home') }}">Home</a>
+                    </li>
+                @endif
                 @if(Auth::check())
                     <li class="menu-li">
                         <a href="{{ route('home') }}">

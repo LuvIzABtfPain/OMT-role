@@ -5,112 +5,68 @@
         <div class="section-top">
             <div class="flx justifySB">
                 <div class="bigLeft">
+                    @foreach($biggest as $item)
                     <div class="newsbox">
                         <a class="thumb">
-                            <i style="background-image: url('https://genk.mediacdn.vn/zoom/540_336/139269124445442048/2022/10/7/avatar1665127028857-16651270291311895952947.jpg')"></i>
+                            <i style="background-image: url('{{ asset('storage/'.$item->url_img) }}')"></i>
                             <!-- <img src="https://genk.mediacdn.vn/zoom/540_336/139269124445442048/2022/10/7/avatar1665127028857-16651270291311895952947.jpg"> -->
                         </a>
                         <div class="newstotal">
                             <h2>
-                                <a href="#">
-                                    Iphone 14 serie cháy hàng trong ngày mở đặt trước
+                                <a href="{{ url('view') }}/{{ $item->id }}">
+                                    {{ $item->title }}
                                 </a>
                             </h2>
                         </div>
                     </div>
-
+                    @endforeach
                     <ul class="list-news-top flx justifySB">
+                        @foreach($second as $item)
                         <li>
                             <div class="newsbox">
-                                <a class="thumb">
-                                    <i style="background-image: url('https://genk.mediacdn.vn/zoom/260_162/139269124445442048/2022/10/6/ngang-16650326433601291570390.jpg')"></i>
+                                <a class="thumb secondthumb">
+                                    <i style="background-image: url('{{ asset('storage/'.$item->url_img) }}')"></i>
                                 </a>
                             </div>
                             <div class="newstotal">
                                 <h3>
-                                    <a href="#" title="4 tuần với Galaxy Z Flip4 Trải nghiệm gói gọn trong chữ “Gập”" class="news_title" data-linktype="newsdetail" data-id="20221006120515284">4 tuần với Galaxy Z Flip4 Trải nghiệm gói gọn trong chữ “Gập”</a>
+                                    <a href="{{ url('view') }}/{{ $item->id }}" title={{ $item->title }} class="news_title">{{ $item->title }}</a>
                                 </h3>
                             </div>
                         </li>
-                        <li>
-                            <div class="newsbox">
-                                <a class="thumb">
-                                    <i style="background-image: url('https://haycafe.vn/wp-content/uploads/2022/02/Anh-gai-xinh-Viet-Nam.jpg')"></i>
-                                </a>
-                            </div>
-                            <div class="newstotal">
-                                <h3>
-                                    <a href="#" title="" class="news_title" data-linktype="newsdetail" data-id="20221006120515284">4 tuần Trải nghiệm em nữ sinh chỉ gói gọn trong 1 chữ "phê"</a>
-                                </h3>
-                            </div>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="bigRight">
 
                     <div class="bigRightLeft">
+                        @foreach($third as $item)
                         <div class="newsbox">
-                            <a href="#" title="Kẻ trộm Bitcoin từ tay FBI" class="thumb">
-                                <i style="background-image: url('https://genk.mediacdn.vn/zoom/260_162/139269124445442048/2022/10/7/avatar1665124809490-1665124809890542697174.jpg')"></i>
+                            <a href="{{ url('view') }}/{{ $item->id }}" title={{ $item->title }} class="thumb">
+                                <i style="background-image: url('{{ asset('storage/'.$item->url_img) }}')"></i>
                             </a>
                         </div>
                         <div class="newstotal">
                             <h3>
-                                <a href="#" title="Kẻ trộm Bitcoin từ tay FBI" class="news_title" data-linktype="newsdetail" data-id="20221007134133223">Kẻ trộm Bitcoin từ tay FBI</a>
+                                <a href="{{ url('view') }}/{{ $item->id }}" title={{ $item->title }} class="news_title" >{{ $item->title }}</a>
                             </h3>
                         </div>
+                        @endforeach
                         <ul class="news-top-right">
+                            @foreach($forth as $item)
                             <li>
                                 <div class="newsbox flx">
-                                    <a href="#" title="Đánh giá nhanh ổ cứng SSD NVMe WD_BLACK SN850 dành cho PS5: Vẫn thuộc hàng đầu bảng nhưng được dán thêm logo PlayStation trên hộp" class="thumb">
-                                        <i style="background-image: url('https://2.bp.blogspot.com/-gnXUMwRHkaI/WE1VCAktNhI/AAAAAAAAjfs/CZk6jUipKXgvOKc821Rnz-fwXT0QhLEuACEw/s1600/15085502_591915637681021_5420424684372040797_n.jpg')"></i>
+                                    <a href="{{ url('view') }}/{{ $item->id }}" title={{ $item->title }} class="thumb">
+                                        <i style="background-image: url('{{ asset('storage/'.$item->url_img) }}')"></i>
                                     </a>
                                     <div class="newstotal">
                                         <h3>
-                                            <a href="#" class="news_title smallthumb">Đánh giá nhanh ổ cứng SSD NVMe WD_BLACK SN850 dành cho PS5</a>
+                                            <a href="{{ url('view') }}/{{ $item->id }}" class="news_title smallthumb">{{ $item->title }}</a>
                                         </h3>
                                     </div>
                                 </div>
                             </li>
-
-                            <li>
-                                <div class="newsbox flx">
-                                    <a href="#" title="Điện thoại màn hình gập khi nào mới thông dụng?" class="thumb">
-                                        <i style="background-image: url('https://genk.mediacdn.vn/zoom/265_162/139269124445442048/2022/10/12/avatar1665534584732-1665534585162288887251.png')"></i>
-                                    </a>
-                                    <div class="newstotal">
-                                        <h3>
-                                            <a href="#" class="news_title smallthumb">Điện thoại màn hình gập khi nào mới thông dụng?</a>
-                                        </h3>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="newsbox flx">
-                                    <a href="#" title="Điện thoại màn hình gập khi nào mới thông dụng?" class="thumb">
-                                        <i style="background-image: url('https://genk.mediacdn.vn/zoom/80_50/139269124445442048/2022/10/12/avatar1665548567463-16655485679651426963241.png')"></i>
-                                    </a>
-                                    <div class="newstotal">
-                                        <h3>
-                                            <a href="#" class="news_title smallthumb">Thành công ngoài tưởng tượng: Tàu NASA 'thổi bay' quỹ đạo cũ của tiểu hành tinh!</a>
-                                        </h3>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="newsbox flx">
-                                    <a href="#" title="Điện thoại màn hình gập khi nào mới thông dụng?" class="thumb">
-                                        <i style="background-image: url('https://genk.mediacdn.vn/zoom/80_50/139269124445442048/2022/10/11/avatar1665477612218-16654776129591040043279.jpg')"></i>
-                                    </a>
-                                    <div class="newstotal">
-                                        <h3>
-                                            <a href="#" class="news_title smallthumb">Ngành chip bết bát vì chính sách mới của Mỹ: 240 tỷ USD vốn hóa bốc hơi chỉ trong vài ngày, cổ phiếu TSMC, Samsung đồng loạt chạm đáy</a>
-                                        </h3>
-                                    </div>
-                                </div>
-                            </li>
+                            @endforeach
                         </ul>
                     </div>
                     <div class="bigRightRight" style="width:200px;"></div>
@@ -125,58 +81,21 @@
             <div class="hotnews-wrapper">
                 <div class="hotnews">
                     <ul class="list-hotnews">
+                        @foreach($hotnews as $item)
                         <li class="hotnews-item">
                             <div class="newsbox midthumb">
-                                <a href="#" class="thumb">
-                                    <i style="background-image: url('https://genk.mediacdn.vn/zoom/260_162/139269124445442048/2022/10/1/avatar1664611568769-16646115693241491864201.jpg')"></i>
+                                <a href="{{ url('view') }}/{{ $item->id }}" class="thumb">
+                                    <i style="background-image: url('{{ asset('storage/'.$item->url_img) }}')"></i>
                                 </a>
                                 <div class="newstotal">
-                                    <a href="#" class="news-type">Đồ chơi số</a>
+                                    <a href=# class="news-type">{{ $item->category->name }}</a>
                                     <h4>
-                                        <a href="#" class="news_title">Vì sao ổ cứng HDD vẫn hữu dụng ?</a>
+                                        <a href="{{ url('view') }}/{{ $item->id }}" class="news_title">{{ $item->title }}</a>
                                     </h4>
                                 </div>
                             </div>
                         </li>
-                        <li class="hotnews-item">
-                            <div class="newsbox midthumb">
-                                <a href="#" class="thumb">
-                                    <i style="background-image: url('https://genk.mediacdn.vn/zoom/260_162/139269124445442048/2022/10/2/avatar1664706315316-16647063159671449549156.jpeg')"></i>
-                                </a>
-                                <div class="newstotal">
-                                    <a href="#" class="news-type">Đồ chơi số</a>
-                                    <h4>
-                                        <a href="#" class="news_title">Tính năng ẩn trên hộp sạc của AirPods Pro 2</a>
-                                    </h4>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="hotnews-item">
-                            <div class="newsbox midthumb">
-                                <a href="#" class="thumb">
-                                    <i style="background-image: url('https://genk.mediacdn.vn/zoom/260_162/139269124445442048/2022/10/4/avatar1664846123007-1664846123295664488952.jpg')"></i>
-                                </a>
-                                <div class="newstotal">
-                                    <a href="#" class="news-type">Tin ICT</a>
-                                    <h4>
-                                        <a href="#" class="news_title">Tesla trình làng siêu máy tính Dojo mới, mạnh đến nỗi làm quá tải mạng lưới điện cả thành phố</a>
-                                    </h4>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="hotnews-item">
-                            <div class="newsbox midthumb">
-                                <a href="#" class="thumb">
-                                    <i style="background-image: url('https://genk.mediacdn.vn/zoom/260_162/139269124445442048/2022/10/1/avatar1664611568769-16646115693241491864201.jpg')"></i>
-                                </a>
-                                <div class="newstotal">
-                                    <a href="#" class="news-type">Đồ chơi số</a>
-                                    <h4>
-                                        <a href="#" class="news_title">Vì sao ổ cứng HDD vẫn hữu dụng ?</a>
-                                    </h4>
-                                </div>
-                            </div>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -189,12 +108,12 @@
                         <li class="clearfix">
                             <div class="another-left">
                                 <a  class="another">
-                                    <img src="http://alllaravel.test/img/{{ $post->url_img ?? 'anh7'}}.webp">
+                                    <img src="{{  asset('storage/'.$post->url_img) }}">
                                 </a>
                             </div>
                             <div class="another-right">
                                 <div class="another-type">
-                                    <a>
+                                    <a href="{{ route('view.cate', ['id'=>$post->category->id]) }}">
                                         {{ $post->category->name }}
                                     </a>
                                 </div>

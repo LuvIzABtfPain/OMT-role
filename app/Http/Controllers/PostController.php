@@ -28,7 +28,10 @@ class PostController extends Controller
     {
         $this->authorize('create', Post::class);
         if($request->isMethod('post')) {
+            $this->validator($request);
             $post = new Post;
+            $imageUrl = $this->storeImage($request);
+            $post->url_img=$imageUrl;
             $post->title = $request->title;
             $post->description = $request->description;
             $post->body = $request->body;
@@ -77,7 +80,8 @@ class PostController extends Controller
                 return view('admin.edit', ['item' => $item, 'cates' => $cates]);
             }
             if($request->isMethod('POST')){
-
+                $imageUrl = $this->storeImage($request);
+                $item->url_img = $imageUrl;
                 $item->title = $request->title;
                 $item->description = $request->description;
                 $item->body = $request->body;
@@ -95,6 +99,28 @@ class PostController extends Controller
             alert()->error("Bạn không được chỉnh sửa bài viết này", 'Something went wrong!');
             return redirect('/home');
         }
+    }
+
+    protected function validator(Request $request){
+        return $request->validate([
+            'title' => ['required', 'min:3', 'max:150', 'unique:posts'],
+            'description'=> ['required', 'min:3','max:255'],
+            'body' => ['required', 'min:10']
+        ],[
+            'title.required' => 'Không được để trống tiêu đề',
+            'title.min' => 'Tiêu đề quá ngắn',
+            'title.max' => 'Tên đề quá dài',
+            'title.unique' => 'Tiêu đề đã tồn tại',
+            'description.required' => 'Không được để trống mô tả',
+            'description.min' => 'Mô tả quá ngắn',
+            'description.max' => 'Mô tả quá dài',
+            'body.required' => 'Không được để trống nội dung bài viết',
+            'body.min' => 'Nội dung bài viết quá ngắn'
+        ]);
+    }
+    protected function storeImage(Request $request) {
+        $path = $request->file('photo')->store('public/img');
+        return substr($path, strlen('public/'));
     }
 
 }

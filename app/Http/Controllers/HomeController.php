@@ -36,10 +36,21 @@ class HomeController extends Controller
     }
 
     public function view(){
+        $category = Category::all();
         $res = Post::with('category', 'user')->get();
-        return view('index', ['posts' => $res]);
+        $biggest = $res->slice(0,1);
+        $second = $res->slice(2, 2);
+        $third = $res->slice(4, 1);
+        $forth = $res->slice(5, 4);
+        $hotnews = $res->slice(10, 4);
+        $posts = $res->slice(15);
+        return view('index', ['posts' => $res, 'second' => $second, 'third' => $third, 'forth' => $forth, 'hotnews'=> $hotnews, 'biggest'=>$biggest, 'category'=>$category]);
     }
-
+    public function view_cate($id){
+        $allcate = Category::all();
+        $posts = Post::with('category')->where('cate_id', $id)->get();
+        return view('postbycate', ['category' => $allcate, 'posts' => $posts]);
+    }
     public function view_post($id)
     {
         $allcomments = Comment::with('user')->where('post_id', $id)->get();
@@ -62,13 +73,15 @@ class HomeController extends Controller
         $post = Post::find($id);
         $author = User::find($post->author_id);
         $category = Category::find($post->cate_id);
+        $allcate = Category::all();
 
         return view('post', [
             'comments_can_edit'=>$comments_can_edit,
             'comments_cant_edit'=>$comments_cant_edit,
             'post'=>$post,
             'author'=>$author,
-            'cate'=>$category
+            'cate'=>$category,
+            'category' => $allcate,
         ]);
     }
 }

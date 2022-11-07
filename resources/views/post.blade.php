@@ -3,7 +3,7 @@
     <div class="body-wrapper">
         <div class="canle">
             <div style="margin-top: 50px;">
-                <img src="{{ asset('img') }}/{{ $post->url_img ?? 'anh7' }}.webp" style="max-width: 100%;">
+                <img src="{{ asset('storage/'.$post->url_img) }}" style="max-width: 100%;">
                 <h2>{{ $post->title }}</h2>
                 <h4 style="padding-top:10px;">{{ $cate->name }}</h4>
                 <div style="padding-top:10px;">Tác giả: {{ $author->name }}</div>
@@ -13,6 +13,9 @@
             <h3>
                 Comments
             </h3>
+            @foreach($errors->all() as $error)
+                <div style="color:red;">{{$error}}</div>
+            @endforeach
             <form method="POST" action="{{ route('post.comment', ['id' => $post['id']]) }}">
                 {!! csrf_field() !!}
             <div style="padding-top:15px;">
