@@ -23,16 +23,16 @@ class CommentController extends Controller
         return redirect()->route('view.post', ['id'=>$id]);
     }
     public function ud_comment(Request $request, $id){
-        $this->validator($request);
         $comment = Comment::find($id);
-        if($request->action == 'update'){
+        if($request->action == 'update'  && Auth::user()->can('update-comment', $comment)){
+            $this->validator($request);
             $comment->content = $request['content'];
             $comment->save();
         }
-        elseif ($request->action == 'delete'){
+        elseif ($request->action == 'delete' && Auth::user()->can('delete-comment', $comment)){
             $comment->delete();
         } else {
-            abort('403');
+            alert("Bạn không có quyền xóa/chỉnh sửa comment này");
         }
         return redirect()->back();
     }

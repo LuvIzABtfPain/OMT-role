@@ -80,8 +80,10 @@ class PostController extends Controller
                 return view('admin.edit', ['item' => $item, 'cates' => $cates]);
             }
             if($request->isMethod('POST')){
-                $imageUrl = $this->storeImage($request);
-                $item->url_img = $imageUrl;
+                if(!empty($request->file('photo'))){
+                    $imageUrl = $this->storeImage($request);
+                    $item->url_img = $imageUrl;
+                }
                 $item->title = $request->title;
                 $item->description = $request->description;
                 $item->body = $request->body;

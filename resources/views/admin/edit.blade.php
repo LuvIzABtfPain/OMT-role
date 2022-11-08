@@ -55,8 +55,8 @@
                             </div>
                             <div class="form-group">
                                 <img src="{{  asset('storage/'.$item->url_img) }}">
-                                <label for="photo">Substitute another photograph</label>
-                                <input type="file" name="photo" id="photo" accept="image/*" class="form-control-file" required>
+                                <label for="photo">Or substitute another photograph</label>
+                                <input type="file" name="photo" id="photo" accept="image/*" class="form-control-file">
                             </div>
                             <div class="form-group">
                                 <label for="body">Body</label>

@@ -52,8 +52,36 @@
 
                         @foreach($comments as $comment)
                             <div class="card shadow" style="margin: 15px 0; padding: 0 10px;">
+                                <form action="{{ route('ud.comment', ['id'=>$comment['id']]) }}" method="POST" class="delete">
+                                    {!! csrf_field() !!}
                                 <p class="text-left">{{ $comment->content }}</p>
-                                <small class="text-right">{{ $comment->user->name }}</small>
+                                <div>
+                                <button type="button" class="btn btn-danger" style="width:85px; margin-bottom:10px;height:40px;">Xóa</button>
+                                    <button type="submit" class="delbutton" value="delete" name="action" hidden></button>
+                                <small class="float-right">{{ $comment->user->name }}</small>
+                                </div>
+                                </form>
                             </div>
                          @endforeach
+@endsection
+@section('after_scripts')
+    <script>
+        //delete
+        $('.btn-danger').on("click", function (e){
+            e.preventDefault();
+            $delbutton = $(this).siblings('.delbutton');
+            Swal.fire({
+                title: 'Are you sure delete this?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $delbutton.trigger('click');
+                }
+            })
+        });
+    </script>
 @endsection
