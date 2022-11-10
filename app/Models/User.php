@@ -59,6 +59,6 @@ class User extends Authenticatable
         return ($this->roles()->where('name', 'author')->exists());
     }
     public function isUser(){
-        return ($this->roles()->where('name', 'user'))->exists();
+        return ($this->roles()->where('name', 'user')->exists());
     }
 }

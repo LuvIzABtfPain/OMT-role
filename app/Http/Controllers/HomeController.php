@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PostViewed;
 use App\Models\Category;
 use App\Models\Comment;
 use Illuminate\Http\Request;
@@ -10,6 +11,7 @@ use Auth;
 use App\Models\Post;
 use App\Models\User;
 use Ramsey\Collection\Collection;
+use Illuminate\Support\Facades\Event;
 
 class HomeController extends Controller
 {
@@ -28,7 +30,7 @@ class HomeController extends Controller
     public function index()
     {
         if(Auth::check() && !(Auth::user()->isUser())) {
-            $res = Post::with('user','category')->get();
+            $res = Post::with('user','category')->latest()->get();
             return view('admin.dashboard', ['posts' => $res]);
         } else {
             return redirect('view');
@@ -37,7 +39,7 @@ class HomeController extends Controller
 
     public function view(){
         $category = Category::all();
-        $res = Post::with('category', 'user')->get();
+        $res = Post::with('category', 'user')->latest()->get();
         $biggest = $res->slice(0,1);
         $second = $res->slice(2, 2);
         $third = $res->slice(4, 1);
@@ -48,8 +50,9 @@ class HomeController extends Controller
     }
     public function view_cate($id){
         $allcate = Category::all();
-        $posts = Post::with('category')->where('cate_id', $id)->get();
-        return view('postbycate', ['category' => $allcate, 'posts' => $posts]);
+        $cate = Category::find($id);
+        $posts = Post::with('user')->where('cate_id', $id)->get();
+        return view('postbycate', ['category' => $allcate, 'posts' => $posts, 'cate'=>$cate]);
     }
     public function view_post($id)
     {
@@ -67,10 +70,11 @@ class HomeController extends Controller
                 }
             }
         } else {
-            $comments_cant_edit = null;
+            $comments_can_edit = null;
             $comments_cant_edit = $allcomments;
         }
         $post = Post::find($id);
+        event(new PostViewed($post));
         $author = User::find($post->author_id);
         $category = Category::find($post->cate_id);
         $allcate = Category::all();

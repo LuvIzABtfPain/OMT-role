@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\StorePostRequest;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;

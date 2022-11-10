@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Post;
 use App\Policies\CommentPolicy;
 use App\Policies\PostPolicy;
 use App\Policies\RolePolicy;

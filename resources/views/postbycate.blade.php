@@ -15,8 +15,8 @@
                                     </div>
                                     <div class="another-right">
                                         <div class="another-type">
-                                            <a href="{{ route('view.cate', ['id'=>$post->category->id]) }}">
-                                                {{ $post->category->name }}
+                                            <a href="{{ route('view.cate', ['id'=>$cate->id]) }}">
+                                                {{ $cate->name }}
                                             </a>
                                         </div>
                                         <div class="another-title">

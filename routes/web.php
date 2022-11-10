@@ -19,7 +19,7 @@ Route::get('/', function(){
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/view', [\App\Http\Controllers\HomeController::class, 'view']);
-Route::get('/view/{id}', [\App\Http\Controllers\HomeController::class,'view_post'])->name('view.post');
+Route::get('/view/{id}', [\App\Http\Controllers\HomeController::class,'view_post'])->name('view.post')->middleware('filter');;
 Route::get('/view_cate/{id}', [\App\Http\Controllers\HomeController::class, 'view_cate'])->name('view.cate');
 Route::post('/ud_comment/{id}', [\App\Http\Controllers\CommentController::class, 'ud_comment'])->name('ud.comment');
 Route::post('/post_comment/{id}', [\App\Http\Controllers\CommentController::class, 'post_comment'])->name('post.comment');
