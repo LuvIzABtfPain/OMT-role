@@ -25,11 +25,8 @@ class PostController extends Controller
 
         return view('post',['posts'=>$posts]);
     }
-    public function add_post(Request $request)
+    public function store_post(StorePostRequest $request)
     {
-        $this->authorize('create', Post::class);
-        if($request->isMethod('post')) {
-            $this->validator($request);
             $post = new Post;
             $imageUrl = $this->storeImage($request);
             $post->url_img=$imageUrl;
@@ -45,11 +42,12 @@ class PostController extends Controller
             } else {
                 alert()->error("Post didn't create", 'Something went wrong!');
             }
-        }
-        if($request->method('get')){
-            $cates = Category::all();
-            return view('admin.add', ['cates'=>$cates]);
-        }
+    }
+
+    public function add_post(){
+        $this->authorize('create', Post::class);
+        $cates = Category::all();
+        return view('admin.add', ['cates'=>$cates]);
     }
 
     public function read($id){
@@ -104,23 +102,6 @@ class PostController extends Controller
         }
     }
 
-    protected function validator(Request $request){
-        return $request->validate([
-            'title' => ['required', 'min:3', 'max:150', 'unique:posts'],
-            'description'=> ['required', 'min:3','max:255'],
-            'body' => ['required', 'min:10']
-        ],[
-            'title.required' => 'Không được để trống tiêu đề',
-            'title.min' => 'Tiêu đề quá ngắn',
-            'title.max' => 'Tên đề quá dài',
-            'title.unique' => 'Tiêu đề đã tồn tại',
-            'description.required' => 'Không được để trống mô tả',
-            'description.min' => 'Mô tả quá ngắn',
-            'description.max' => 'Mô tả quá dài',
-            'body.required' => 'Không được để trống nội dung bài viết',
-            'body.min' => 'Nội dung bài viết quá ngắn'
-        ]);
-    }
     protected function storeImage(Request $request) {
         $path = $request->file('photo')->store('public/img');
         return substr($path, strlen('public/'));

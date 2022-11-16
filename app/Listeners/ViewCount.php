@@ -3,6 +3,8 @@
 namespace App\Listeners;
 
 use App\Events\PostViewed;
+use App\Jobs\AuthorJob;
+use App\Mail\ViewPostNotiAuthor;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Session;
@@ -34,6 +36,7 @@ class ViewCount
         {
             $event->post->increment('view_count');
             $this->storePost($event->post);
+            AuthorJob::dispatchIf($event->post->view_count % 10 == 0, $event->post);
         }
     }
     private function isPostViewed(Post $post)

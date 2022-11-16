@@ -27,7 +27,7 @@ Auth::routes();
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/add_post', [PostController::class, 'add_post']);
-    Route::post('/add_post', [PostController::class, 'add_post']);
+    Route::post('/add_post', [PostController::class, 'store_post']);
     Route::get('/edit/{id}', [PostController::class,'edit']);
     Route::get('/delete/{id}', [PostController::class, 'delete']);
     Route::post('/edit/{id}', [PostController::class, 'edit']);
